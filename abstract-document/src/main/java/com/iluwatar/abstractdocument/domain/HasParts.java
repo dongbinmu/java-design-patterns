@@ -22,9 +22,11 @@
  */
 package com.iluwatar.abstractdocument.domain;
 
-import java.util.stream.Stream;
-
 import com.iluwatar.abstractdocument.Document;
+
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 /**
  * HasParts trait for static access to 'parts' property
@@ -34,6 +36,7 @@ public interface HasParts extends Document {
   String PROPERTY = "parts";
 
   default Stream<Part> getParts() {
+    Function<Map<String, Object>, Part> tmp = Part::new;
     return children(PROPERTY, Part::new);
   }
 
